@@ -1,6 +1,8 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<a href="/hello/hi">显示</a>
+<script language="JavaScript">
+    top.location.href="login.jsp";
+</script>
 </body>
 </html>
