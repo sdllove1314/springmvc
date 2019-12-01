@@ -8,15 +8,9 @@ To change this template use File | Settings | File Templates.
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -36,33 +30,42 @@ To change this template use File | Settings | File Templates.
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;"><i class="iconfont">&#xe607;</i>管理员管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="toaddUser.action?user.userType=admin" target="iframe"><span class="l-line"></span>增加管理员</a>
+                    <dd><a href="toaddUser?usertype='admin'" target="iframe"><span class="l-line"></span>增加管理员</a>
                     </dd>
-                    <dd><a href="userlist.action?user.userType=admin&pageUtil.pageNo=1" target="iframe"><span
+                    <dd><a href="findAllUserInfo?usertype=admin" target="iframe"><span
                             class="l-line"></span>查看管理员</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe608;</i>医生管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="toaddUser.action?user.userType=doctor" target="iframe"><span class="l-line"></span>增加医生</a>
+                    <dd><a href="toaddUser?usertype=doctor" target="iframe"><span class="l-line"></span>增加医生</a>
                     </dd>
-                    <dd><a href="userlist.action?user.userType=doctor&pageUtil.pageNo=1" target="iframe"><span
+                    <dd><a href="findAllUserInfo?usertype=doctor" target="iframe"><span
                             class="l-line"></span>查看医生</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe608;</i>用户管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="toaddUser.action?user.userType=user" data-text="查看用户" target="iframe"><span
+                    <dd><a href="toaddUser?usertype=user" data-text="查看用户" target="iframe"><span
                             class="l-line"></span>增加用户</a></dd>
-                    <dd><a href="userlist.action?user.userType=user&pageUtil.pageNo=1" target="iframe"><span
+                    <dd><a href="findAllUserInfo?usertype=user" target="iframe"><span
                             class="l-line"></span>查看用户</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>药品管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="toaddDrug" data-text="查看用户" target="iframe"><span
+                            class="l-line"></span>添加药品</a></dd>
+                    <dd><a href="findAllDrug" target="iframe"><span
+                            class="l-line"></span>查看药品</a></dd>
                 </dl>
             </li>
 
             <li class="layui-nav-item">
-                <a href="userinfo.action?userInfo.userId=${user.userId}&userInfo.userName=${user.userName}"
+                <a href=""
                    target="iframe"><i
                         class="iconfont">&#xe606;</i>个人信息</a>
             </li>
@@ -85,7 +88,7 @@ To change this template use File | Settings | File Templates.
                 <li class="layui-nav-item"><a href="javascript:;" data-url="email.html" data-id='4' data-text="邮件系统"><i
                         class="iconfont">&#xe603;</i></a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">${user.userName}</a>
+                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">${loginUser.username}</a>
                 </li>
                 <li class="layui-nav-item"><a href="logout.action">退出</a></li>
             </ul>
@@ -101,7 +104,7 @@ To change this template use File | Settings | File Templates.
                     <div class="layui-tab-item layui-show" style="background: #f5f5f5;">
                         <!--1-->
 
-                        <iframe src="userinfo.action?userInfo.userId=${user.userId}&userInfo.userName=${user.userName}"
+                        <iframe src="userInfo?userid=${loginUser.userid}"
                                 width="100%" height="100%" name="iframe" scrolling="auto" class="iframe"
                                 framborder="0"></iframe>
                         <!--1end-->

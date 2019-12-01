@@ -55,37 +55,38 @@
                 <thead>
                 <tr>
 
-                    <th>ID</th>
-                    <th>用户类型</th>
-                    <th>用户名</th>
-                    <th>性别</th>
-                    <th>电话号码</th>
-                    <th>QQ</th>
+                    <th>药品ID</th>
+                    <th>药品图片</th>
+                    <th>药品名</th>
+                    <th>药品价格</th>
+                    <th>库存</th>
+                    <th>备注</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="info" items="${pageInfo.list}">
-                <tr>
-                        <td><c:out value="${info.userId}"/></td>
-                        <td><c:out value="${info.userType}"/></td>
-                        <td><c:out value="${info.userName}"/></td>
-                        <td><c:out value="${info.userSex}"/></td>
-                        <td><c:out value="${info.userTel}"/></td>
-                        <td><c:out value="${info.userQQ}"/></td>
-                    <td>
-                        <div class="layui-inline">
+                    <tr>
+                        <td><c:out value="${info.gid}"/></td>
+                        <td><img src="<c:out value="${info.gimage}"/>" style="height: 100px;width: 100px"></td>
+                        <td><c:out value="${info.gname}"/></td>
+                        <td><c:out value="${info.gprice}"/></td>
+                        <td><c:out value="${info.gnum}"/></td>
+                        <td><c:out value="${info.gnote}"/></td>
 
-                            <a href="userinfo.action?userInfo.userId=${info.userId}&userInfo.userName=${info.userName}"
-                               class="layui-btn layui-btn-small layui-btn-normal go-btn"><i
-                                    class="layui-icon">&#xe642;</i></a>
-                            <a href="delUser?userid=${info.userId}"
-                               class="layui-btn layui-btn-small layui-btn-normal del-btn"><i
-                                    class="layui-icon">&#xe640;</i></a>
+                        <td>
+                            <div class="layui-inline">
 
-                        </div>
-                    </td>
-                </tr>
+                                <a href=""
+                                   class="layui-btn layui-btn-small layui-btn-normal go-btn"><i
+                                        class="layui-icon">&#xe642;</i></a>
+                                <a href=""
+                                   class="layui-btn layui-btn-small layui-btn-normal del-btn"><i
+                                        class="layui-icon">&#xe640;</i></a>
+
+                            </div>
+                        </td>
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>

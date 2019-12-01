@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: sdl
+  Date: 2019/11/30
+  Time: 7:06 下午
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ page import="com.sdl.utils.RadomNum" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,65 +29,56 @@
 <body>
 <div class="layui-tab page-content-wrap">
     <ul class="layui-tab-title">
-        <li class="layui-this">添加用户</li>
+        <li class="layui-this">添加药品</li>
 
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
-            <form class="layui-form" action="addUser" method="post"
+            <form class="layui-form" action="addDrug" method="post" enctype="multipart/form-data"
                   style="width: 90%;padding-top: 20px;">
+
                 <div class="layui-form-item">
-                    <label class="layui-form-label">用户类型：</label>
+                    <label class="layui-form-label">药品ID：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="userType" class="layui-input layui-disabled" value=${addusertype}>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">用户ID：</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="userId" required lay-verify="required" placeholder="请输入ID"
+                        <input type="text" name="gid" required lay-verify="required" placeholder="请输入ID"
                                autocomplete="off" class="layui-input " value=<%=new RadomNum().generateRadomnum()%>>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">用户名：</label>
+                    <label class="layui-form-label">药品图片：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="userName" required lay-verify="required" placeholder="请输入用户名"
+                        <input type="file" name="gimage" onchange="showPreview(this) " accept="image/png,image/jpeg">
+                    </div>
+                    <div>
+                        <img id="portrait" src="" style="display:none;height: 100px;width: 100px" />
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">药品名：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="gname" required lay-verify="required" placeholder="请输入药名"
                                autocomplete="off" class="layui-input ">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">密码：</label>
+                    <label class="layui-form-label">药品价格：</label>
                     <div class="layui-input-block">
-                        <input type="password" name="userPassword" required lay-verify="required"
-                               placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        <input type="text" name="gprice" required lay-verify="required"
+                               placeholder="请输入价格" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">性别：</label>
+                    <label class="layui-form-label">添加数量：</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="userSex" value="男" title="男" checked="">
-                        <input type="radio" name="userSex" value="女" title="女">
+                        <input type="text" name="gnum" required lay-verify="required"
+                               placeholder="请输入数量" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">电话：</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="userTel" required lay-verify="required" placeholder="请输入电话"
-                               autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">QQ：</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="userQQ" required lay-verify="required" placeholder="请输入QQ"
-                               autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">备注：</label>
                     <div class="layui-input-block">
-                        <textarea id="userInfo.userNote" name="userNote" placeholder="请输入内容"
+                        <textarea id="userInfo.userNote" name="gnote" placeholder="请输入内容"
                                   class="layui-textarea"></textarea>
                     </div>
                 </div>
@@ -103,6 +101,21 @@
         //监听信息提交
 
     });
+</script>
+<script type="text/javascript">
+    function showPreview(source) {
+        var file = source.files[0];
+        if(window.FileReader) {
+            var fr = new FileReader();
+            console.log(fr);
+            var portrait = document.getElementById('portrait');
+            fr.onloadend = function(e) {
+                portrait.src = e.target.result;
+            };
+            fr.readAsDataURL(file);
+            portrait.style.display = 'block';
+        }
+    }
 </script>
 </body>
 </html>

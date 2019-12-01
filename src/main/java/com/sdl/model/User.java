@@ -3,16 +3,16 @@ package com.sdl.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-   int userid;
+   Integer userid;
    String usertype;
    String username;
    String userpassword;
 
-    public int getUserid() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 
@@ -37,6 +37,13 @@ public class User implements Serializable {
     }
 
     public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
+    }
+
+    public User(Integer userid, String usertype, String username, String userpassword) {
+        this.userid = userid;
+        this.usertype = usertype;
+        this.username = username;
         this.userpassword = userpassword;
     }
 

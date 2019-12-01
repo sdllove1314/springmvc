@@ -7,16 +7,10 @@
 --%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
 <!DOCTYPE html>
 <html>
 
 <head>
-    <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>后台登录</title>
@@ -29,12 +23,12 @@
     <div class="m-login">
         <h3>后台系统登录</h3>
         <div class="m-login-warp">
-            <form class="layui-form" action="login.action" method="post">
+            <form class="layui-form" action="login" method="post">
                 <div class="layui-form-item">
-                    <input type="text" name="user.userName" required lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                    <input type="text" name="username" required lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <input type="text" name="user.userPassword" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                    <input type="text" name="userpassword" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
                 </div>
 
                 <div class="layui-form-item m-login-btn">
