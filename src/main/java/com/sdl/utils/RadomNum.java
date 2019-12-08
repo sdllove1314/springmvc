@@ -1,5 +1,6 @@
 package com.sdl.utils;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,4 +17,8 @@ public class RadomNum {
         String time = new SimpleDateFormat("yyyy年MM月dd日-HH:mm:ss").format(new Date().getTime());
         return time;
     }
+//    public Timestamp getSqltime(){
+//        Timestamp ctime = new Timestamp(new Date().getTime());
+//        return ctime;
+//    }
 }

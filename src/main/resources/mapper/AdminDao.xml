@@ -4,33 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdl.dao.AdminDao">
     <select id="getInfoByID" resultType="com.sdl.model.UserInfo">
-      select * from t_userinfo where userid = #{userid}
+         select * from t_userinfo where userid = #{userid}
     </select>
-    <update id="updateUserInfo">
-      update t_userinfo set usersex = #{usersex},usertel = #{usertel},userqq = #{userqq},usernote = #{usernote} where userid = #{userid}
+    <update id="updataUserInfo">
+         update t_userinfo set usersex = #{usersex},usertel = #{usertel},userqq = #{userqq},usernote = #{usernote} where userid = #{userid}
     </update>
-    <update id="updateUserPassword">
-      update t_user set username = #{username},userpassword = #{userpassword} where userid = #{userid}
+    <update id="updataUserPassword">
+         update t_user set username = #{username},userpassword = #{userpassword} where userid = #{userid}
     </update>
     <select id="findAllUserInfo" resultType="com.sdl.model.SUserInfo">
-      select t.userid,usertype,username,usersex,usertel,userqq from t_user as s,t_userinfo as t where s.userid = t.userid and usertype= #{usertype}
+         select t.userid,usertype,username,usersex,usertel,userqq from t_user as s,t_userinfo as t where s.userid = t.userid and usertype= #{usertype}
     </select>
     <delete id="delUserbyId" parameterType="Integer">
-      DELETE from t_user WHERE userid = #{userid}
+         DELETE from t_user WHERE userid = #{userid}
     </delete>
     <insert id="addUser" parameterType="com.sdl.model.User">
-      INSERT t_user (userid,usertype,username,userpassword) VALUES(#{userid},#{usertype},#{username},#{userpassword})
+        INSERT t_user (userid,usertype,username,userpassword) VALUES(#{userid},#{usertype},#{username},#{userpassword})
     </insert>
     <insert id="addUserInfo" parameterType="com.sdl.model.UserInfo">
-      INSERT t_userinfo (usersex,usertel,userqq,usernote,userid) VALUES(#{usersex},#{usertel},#{userqq},#{usernote},#{userid})
+        INSERT t_userinfo (usersex,usertel,userqq,usernote,userid) VALUES(#{usersex},#{usertel},#{userqq},#{usernote},#{userid})
     </insert>
     <insert id="addDrugInfo" parameterType="com.sdl.model.Drug">
-      INSERT t_drug (gid,gimage,gname,gprice,gnum,gnote) VALUES (#{gid},#{gimage,jdbcType=BLOB},#{gname},#{gprice},#{gnum},#{gnote})
+        INSERT t_drug (gid,gimage,gname,gprice,gnum,gnote) VALUES (#{gid},#{gimage,jdbcType=BLOB},#{gname},#{gprice},#{gnum},#{gnote})
     </insert>
     <select id="findDrug" resultType="com.sdl.model.Drug">
-      Select * from t_drug where gid = #{gid}
+        Select * from t_drug where gid = #{gid}
     </select>
-    <select id="finaAllDrug" resultType="com.sdl.model.Drug">
-      Select * from t_drug
+    <select id="findAllDrug" resultType="com.sdl.model.Drug">
+        Select * from t_drug
     </select>
+    <update id="updataDrugInfo">
+        update t_drug set
+        <if test="gimage!= null and gimage != ''">
+          gimage = #{gimage},
+         </if>
+        gname = #{gname},gprice = #{gprice},gnum = #{gnum},gnote = #{gnote} where gid = #{gid}
+    </update>
+    <delete id="delteDrug" parameterType="Integer">
+        DELETE from t_drug WHERE gid = #{gid}
+    </delete>
+
 </mapper>

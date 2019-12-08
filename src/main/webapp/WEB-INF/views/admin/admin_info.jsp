@@ -20,7 +20,7 @@
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
-            <form class="layui-form" action="updateUserInfo" method="post"
+            <form class="layui-form" action="updataUserInfo" method="post"
                   style="width: 90%;padding-top: 20px;">
 
                 <div class="layui-form-item">
@@ -84,7 +84,7 @@
             </form>
         </div>
         <div class="layui-tab-item">
-            <form class="layui-form" action="updateUserPassword" method="post"
+            <form class="layui-form" action="updataUserPassword" method="post"
                   style="width: 90%;padding-top: 20px;">
                 <input name="userid" style="display: none" value=${loginUser.userid}>
                 <div class="layui-form-item">

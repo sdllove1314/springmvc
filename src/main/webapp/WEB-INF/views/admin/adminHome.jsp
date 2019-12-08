@@ -65,7 +65,7 @@ To change this template use File | Settings | File Templates.
             </li>
 
             <li class="layui-nav-item">
-                <a href=""
+                <a href="userInfo?userid=${loginUser.userid}"
                    target="iframe"><i
                         class="iconfont">&#xe606;</i>个人信息</a>
             </li>

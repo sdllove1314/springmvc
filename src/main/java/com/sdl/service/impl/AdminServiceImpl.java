@@ -18,11 +18,11 @@ public class AdminServiceImpl implements AdminService {
     public UserInfo getInfoByID(int userid) {
         return adminDao.getInfoByID(userid);
     }
-    public int updateUserInfo(UserInfo userInfo) {
-        return adminDao.updateUserInfo(userInfo);
+    public int updataUserInfo(UserInfo userInfo) {
+        return adminDao.updataUserInfo(userInfo);
     }
-    public int updateUserPassword(User user) {
-        return adminDao.updateUserPassword(user);
+    public int updataUserPassword(User user) {
+        return adminDao.updataUserPassword(user);
     }
     public List<SUserInfo> findAllUserInfo(String userType) {
         return adminDao.findAllUserInfo(userType);
@@ -39,12 +39,16 @@ public class AdminServiceImpl implements AdminService {
     public int addDrugInfo(Drug drug) {
         return adminDao.addDrugInfo(drug);
     }
-
     public Drug findDrug(int gid) {
         return adminDao.findDrug(gid);
     }
-
-    public List<Drug> finaAllDrug() {
-        return adminDao.finaAllDrug();
+    public List<Drug> findAllDrug() {
+        return adminDao.findAllDrug();
+    }
+    public int updataDrugInfo(Drug drug) {
+        return adminDao.updataDrugInfo(drug);
+    }
+    public int delteDrug(int gid) {
+        return adminDao.delteDrug(gid);
     }
 }

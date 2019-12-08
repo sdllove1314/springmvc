@@ -10,17 +10,14 @@ import com.sdl.service.AdminService;
 import com.sdl.utils.Coverimage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,19 +32,19 @@ public class AdminController {
         model.addAttribute("LoginUserInfo",userInfo);
         return "/admin/admin_info";
     }
-    @RequestMapping(value = "/updateUserInfo",method = {RequestMethod.POST})
-    public String updateUserInfo(UserInfo userInfo,Model model){
+    @RequestMapping(value = "/updataUserInfo",method = {RequestMethod.POST})
+    public String updataUserInfo(UserInfo userInfo,Model model){
         System.out.println("修改UserInfo=========>>>>>>>"+userInfo);
         int userid = userInfo.getUserid();
-        int flag = adminService.updateUserInfo(userInfo);
+        int flag = adminService.updataUserInfo(userInfo);
         System.out.println("修改状态=========>>>>>>>"+flag);
        // model.addAttribute("msg","修改成功！");
         return "redirect:/userInfo?userid="+userid+"";
     }
-    @RequestMapping(value = "/updateUserPassword",method = {RequestMethod.POST})
+    @RequestMapping(value = "/updataUserPassword",method = {RequestMethod.POST})
     public String updateUserPassword(User user,Model model){
         System.out.println("修改UserPassword=========>>>>>>>"+user);
-        int flag = adminService.updateUserPassword(user);
+        int flag = adminService.updataUserPassword(user);
         System.out.println("修改状态=========>>>>>>>"+flag);
         return "login";
     }
@@ -95,13 +92,14 @@ public class AdminController {
     public String toaddDrug(){
         return "/admin/addDrug";
     }
+
     @RequestMapping("addDrug")
-    public String addDrug(Drug drug, @RequestParam(value = "gimage",required = false) MultipartFile gimage, ModelMap modelMap) throws IOException, SQLException {
+    public String addDrug(Drug drug, @RequestParam(value = "gimage",required = false) MultipartFile gimage) throws IOException, SQLException {
         byte []upimage = gimage.getBytes();
         drug.setGimage(upimage);
         System.out.println("添加的药品=========>>>>>>>"+drug);
         adminService.addDrugInfo(drug);
-        return "/admin/success";
+        return "redirect:/toaddDrug";
     }
     @RequestMapping("/findDrug")
     public String findDrug(int gid,HttpServletRequest request,Model model) throws IOException, SQLException {
@@ -123,7 +121,7 @@ public class AdminController {
 
         String path = request.getSession().getServletContext().getRealPath("/upload/image/");
         PageHelper.startPage(pagegNum,3);
-        List<Drug> drugList = adminService.finaAllDrug();
+        List<Drug> drugList = adminService.findAllDrug();
         System.out.println("替换前=========>>>>"+drugList);
         for(Drug drug:drugList){
             String imageUrl = new Coverimage().outimage(drug.getGimage(),path);
@@ -134,5 +132,36 @@ public class AdminController {
        PageInfo<Drug> pageInfo = new PageInfo<Drug>(drugList);
        model.addAttribute("pageInfo",pageInfo);
         return "/admin/allDruglist";
+    }
+    @RequestMapping("/toupdataDrugInfo")
+    public String toupdateDrugInfo(HttpServletRequest request,Drug drug,Model model) throws IOException {
+        String path = request.getSession().getServletContext().getRealPath("/upload/image/");
+        System.out.println(drug);
+        Drug druginfo = adminService.findDrug(drug.getGid());
+        String drugimage = new Coverimage().outimage(druginfo.getGimage(),path);
+        druginfo.setGimage(drugimage);
+        model.addAttribute("DrugInfo",druginfo);
+        return "/admin/updataDrugInfo";
+    }
+    @RequestMapping("updataDrugInfo")
+    public String updataDrugInfo(Drug drug,@RequestParam(value = "gimage",required = false) MultipartFile gimage) throws IOException {
+        byte []upimage = gimage.getBytes();
+        if(upimage.length==0||upimage==null){
+            System.out.println("image未更改");
+            drug.setGimage(null);
+        }else{
+            drug.setGimage(upimage);
+        }
+
+        System.out.println(drug);
+        adminService.updataDrugInfo(drug);
+        return "redirect:/findAllDrug";
+    }
+    @RequestMapping("delDrug")
+    public String delDrug(int gid){
+        System.out.println("要删除的gid为=========>>>>>"+gid);
+        int flag = adminService.delteDrug(gid);
+        System.out.println("删除状态=========>>>>>"+flag);
+        return "redirect:/findAllDrug";
     }
 }

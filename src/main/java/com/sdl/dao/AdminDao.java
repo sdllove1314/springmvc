@@ -22,14 +22,14 @@ public interface AdminDao {
      * @param userInfo
      * @return
      */
-    public int updateUserInfo(UserInfo userInfo);
+    public int updataUserInfo(UserInfo userInfo);
 
     /**
      * 更改密码
      * @param user
      * @return
      */
-    public int updateUserPassword(User user);
+    public int updataUserPassword(User user);
     /**
      * 查找某类型的所有用户信息
      * @param userType
@@ -69,11 +69,25 @@ public interface AdminDao {
      * 查看所有药品
      * @return
      */
-    public List<Drug> finaAllDrug();
+    public List<Drug> findAllDrug();
     /**
      * 根据ID查找药品
      * @param gid
      * @return
      */
     public Drug findDrug(int gid);
+
+    /**
+     * 更新药品信息
+     * @param drug
+     * @return
+     */
+    public int updataDrugInfo(Drug drug);
+
+    /**
+     * 删除药品
+     * @param gid
+     * @return
+     */
+    public int delteDrug(int gid);
 }

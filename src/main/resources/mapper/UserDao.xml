@@ -4,6 +4,62 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdl.dao.UserDao">
     <select id="findAll" resultType="com.sdl.model.User">
-       select * from t_user where userid = #{userid}
+        select * from t_user where userid = #{userid}
+    </select>
+    <insert id="addPet" parameterType="com.sdl.model.Pet">
+        INSERT t_pet (petid,petimage,petname,petbreed,petsex,petage,petweight,userid) values
+    (#{petid},#{petimage,jdbcType=BLOB},#{petname},#{petbreed},#{petsex},#{petage},#{petweight},#{userid})
+    </insert>
+    <select id="findAllPet" parameterType="int" resultType="com.sdl.model.Pet">
+        select * from t_pet where userid = #{petuserid}
+    </select>
+    <delete id="deltePet" parameterType="int">
+        delete from t_pet where petid = #{petid}
+    </delete>
+    <update id="updataPetInfo">
+        update t_pet set
+        <if test="petimage!=null and petimage!=''">
+            petimage = #{petimage},
+        </if>
+        petname = #{petname},petbreed = #{petbreed},petsex = #{petsex},petage = #{petage},petweight = #{petweight}
+        where petid = #{petid}
+    </update>
+    <select id="findaPet" resultType="com.sdl.model.Pet">
+        select * from t_pet where petid = #{petid}
+    </select>
+    <insert id="newDescription" parameterType="com.sdl.model.Description">
+        insert t_description (did,descdate,petname,description,descdrug,result,resoved,petid,userid,doctorid) values
+        (#{did},#{descdate},#{petname},#{description},#{descdrug},#{result},#{resoved},#{petid},#{userid},#{doctorid})
+    </insert>
+    <update id="updataDescription">
+        update t_description
+        <set>
+            <if test="description !=null and description !='' ">
+                description = #{description},
+            </if>
+            <if test="descdurg !=null and descdurg !='' ">
+                descdurg = #{descdurg},
+            </if>
+            <if test="result !=null and result !='' ">
+                result = #{result},
+            </if>
+            <if test="resoved !=null and resoved !='' ">
+                resoved = #{resoved},
+            </if>
+            <if test="doctorid !=null and doctorid !='' ">
+                doctorid = #{doctorid},
+            </if>
+            where did = #{did}
+        </set>
+        description
+    </update>
+    <select id="findAllDescription" resultType="com.sdl.model.Description">
+        select * from t_description where userid = #{userid}
+    </select>
+    <delete id="delDescription">
+        delete from t_description where did = #{did}
+    </delete>
+    <select id="findDescresoved" resultType="com.sdl.model.Description">
+        select * from t_description where userid = #{userid} and resoved = #{resoved}
     </select>
 </mapper>

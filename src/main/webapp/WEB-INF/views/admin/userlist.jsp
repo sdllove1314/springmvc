@@ -76,7 +76,7 @@
                     <td>
                         <div class="layui-inline">
 
-                            <a href="userinfo.action?userInfo.userId=${info.userId}&userInfo.userName=${info.userName}"
+                            <a href="userInfo?userid=${info.userId}"
                                class="layui-btn layui-btn-small layui-btn-normal go-btn"><i
                                     class="layui-icon">&#xe642;</i></a>
                             <a href="delUser?userid=${info.userId}"

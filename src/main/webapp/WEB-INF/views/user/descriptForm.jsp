@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%@ page import="com.sdl.util.RadomNum" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="com.sdl.utils.RadomNum" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <%
@@ -28,20 +27,21 @@
 
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
-            <form class="layui-form" action="descriptForm.action?description.userId=${pet.userId}&pageUtil.pageNo=1"
+            <form class="layui-form" action="descript"
                   method="post"
                   style="width: 90%;padding-top: 20px;">
+                <input name="userid" style="display: none" value=${loginUser.userid}>
                 <div class="layui-form-item">
                     <label class="layui-form-label">单号：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="description.dId" required lay-verify="required"
+                        <input type="text" name="did" required lay-verify="required"
                                autocomplete="off" class="layui-input " value=<%=new RadomNum().generateRadomnum()%>>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">时间：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="description.date" required lay-verify="required"
+                        <input type="text" name="descdate" required lay-verify="required"
                                autocomplete="off" class="layui-input " value=<%=new RadomNum().generateTime()%>>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">病情描述：</label>
                     <div class="layui-input-block">
-                        <textarea name="description.description" class="layui-textarea"></textarea>
+                        <textarea name="description" class="layui-textarea"></textarea>
                     </div>
                 </div>
 
@@ -86,8 +86,8 @@
             marginLeft: '110px',
             width: '200px',
         },
-        name: 'description.petId',
-        data: ${SelectPetlist}
+        name: 'petid',
+        data: ${selectPet}
     })
 </script>
 </body>

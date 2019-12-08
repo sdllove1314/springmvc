@@ -1,6 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: sdl
+  Date: 2019/12/8
+  Time: 10:39 下午
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%@ page import="com.sdl.util.RadomNum" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <%
@@ -27,7 +32,7 @@
         <li class="layui-this">查看诊断</li>
     </ul>
     <div class="layui-tab-content">
-        <form style="width:80%;" class="layui-form" action="treatdForm.action?description.userId=${description.userId}"
+        <form style="width:80%;" class="layui-form" action="seeResult"
               method="post">
             <div class="layui-form-item">
                 <label class="layui-form-label">选择宠物名：</label>
@@ -42,21 +47,21 @@
                 <label class="layui-form-label">单号:</label>
                 <div class="layui-input-block">
                     <input type="text" required lay-verify="required"
-                           autocomplete="off" class="layui-input " value=${description.dId}>
+                           autocomplete="off" class="layui-input " >
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">时间:</label>
                 <div class="layui-input-block">
                     <input type="text" required lay-verify="required"
-                           autocomplete="off" class="layui-input " value=${description.date}>
+                           autocomplete="off" class="layui-input " >
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">宠物姓名：</label>
                 <div class="layui-input-block">
                     <input type="text" required lay-verify="required"
-                           autocomplete="off" class="layui-input " value=${description.petName}>
+                           autocomplete="off" class="layui-input " >
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
@@ -97,9 +102,9 @@
             width: '200px',
 
         },
-        name: 'pet.petId',
+        name: 'petid',
         data: ${SelectPetlist}
     })
 </script>
 </body>
-</html>
+</html></html>

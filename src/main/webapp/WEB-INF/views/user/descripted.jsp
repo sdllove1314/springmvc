@@ -1,9 +1,9 @@
 <%--
-Created by IntelliJ IDEA.
-User: sdl
-Date: 2019/10/24
-Time: 10:42 下午
-To change this template use File | Settings | File Templates.
+  Created by IntelliJ IDEA.
+  User: sdl
+  Date: 2019/12/8
+  Time: 9:47 下午
+  To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -65,24 +65,24 @@ To change this template use File | Settings | File Templates.
                     <th>宠物姓名</th>
                     <th>病情描述</th>
                     <th>是否诊断完成</th>
-                    <th>主人</th>
+                    <th>主人ID</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="delist" items="${descriptionList}">
+                <c:forEach var="delist" items="${pageInfo.list}">
                     <tr>
-                        <td><c:out value="${delist.dId}"/></td>
-                        <td><c:out value="${delist.date}"/></td>
-                        <td><c:out value="${delist.petName}"/></td>
+                        <td><c:out value="${delist.did}"/></td>
+                        <td><c:out value="${delist.descdate}"/></td>
+                        <td><c:out value="${delist.petname}"/></td>
                         <td><c:out value="${delist.description}"/></td>
                         <td><c:out value="${delist.resoved}"/></td>
-                        <td><c:out value="${delist.userId}"/></td>
+                        <td><c:out value="${delist.userid}"/></td>
                         <td>
                             <div class="layui-inline">
-                                <a href="deldescriptForm.action?description.dId=${delist.dId}&description.userId=${delist.userId}&pageUtil.pageNo=1"
+                                <a href="delDescription?did=${delist.did}&userid=${delist.userid}"
                                    class="layui-btn layui-btn-small layui-btn-normal del-btn"><i class="layui-icon">&#xe640;</i></a>
-                                <a href="todescriptForm.action?pet.petId=${petinfo.petId}&pet.petName=${petinfo.petName}&pet.userId=${petinfo.userId}"
+                                <a href="todescriptForm"
                                    class="layui-btn layui-btn-small layui-btn-normal  layui-btn-danger"><i>查看诊断</i></a>
                             </div>
                         </td>
@@ -92,16 +92,14 @@ To change this template use File | Settings | File Templates.
             </table>
             <div class="page-wrap">
                 <ul class="pagination">
-                    <li>
-                        <a href="todescripted.action?description.userId=${description.userId}&pageUtil.pageNo=${pageUtil.pageNo-1}">«</a>
-                    </li>
-                    <li class="active"><span>${pageUtil.pageNo}</span></li>
-                    <li>
-                        <a href="todescripted.action?description.userId=${description.userId}&pageUtil.pageNo=${pageUtil.pageNo+1}">»</a>
-                    </li>
+                    <li><a href="descripted?userid=${loginUser.userid}">首页</a></li>
+                    <li><a href="descripted?pageNum=${pageInfo.prePage}&userid=${loginUser.userid}">«</a></li>
+                    <li class="active"><span>${pageInfo.pageNum}</span></li>
+                    <li><a href="descripted?pageNum=${pageInfo.nextPage}&userid=${loginUser.userid}">»</a></li>
+                    <li><a href="descripted?pageNum=${pageInfo.pages}&userid=${loginUser.userid}">尾页</a></li>
                 </ul>
                 <ul>
-                    <li><a>共${pageUtil.totalPage}页</a></li>
+                    <li><a>共${pageInfo.pages}页</a></li>
                 </ul>
             </div>
         </div>
@@ -118,3 +116,4 @@ To change this template use File | Settings | File Templates.
 </body>
 
 </html>
+

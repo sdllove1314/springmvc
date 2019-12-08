@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: sdl
-  Date: 2019/10/24
-  Time: 10:42 下午
+  Date: 2019/12/5
+  Time: 10:00 下午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
@@ -46,6 +46,7 @@
                 <colgroup>
                     <col class="hidden-xs" width="50">
                     <col class="hidden-xs" width="80">
+                    <col class="hidden-xs" width="50">
                     <col class="hidden-xs" width="100">
                     <col class="hidden-xs" width="50">
                     <col class="hidden-xs" width="100">
@@ -55,32 +56,34 @@
                 <thead>
                 <tr>
 
-                    <th>药品ID</th>
-                    <th>药品图片</th>
-                    <th>药品名</th>
-                    <th>药品价格</th>
-                    <th>库存</th>
-                    <th>备注</th>
+                    <th>宠物ID</th>
+                    <th>宠物图片</th>
+                    <th>宠物名</th>
+                    <th>宠物种类</th>
+                    <th>宠物性别</th>
+                    <th>宠物年龄(岁)</th>
+                    <th>宠物体重(Kg)</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="info" items="${pageInfo.list}">
                     <tr>
-                        <td><c:out value="${info.gid}"/></td>
-                        <td><img src="<c:out value="${info.gimage}"/>" style="height: 100px;width: 100px"></td>
-                        <td><c:out value="${info.gname}"/></td>
-                        <td><c:out value="${info.gprice}"/></td>
-                        <td><c:out value="${info.gnum}"/></td>
-                        <td><c:out value="${info.gnote}"/></td>
+                        <td><c:out value="${info.petid}"/></td>
+                        <td><img src="<c:out value="${info.petimage}"/>" style="height: 100px;width: 100px"></td>
+                        <td><c:out value="${info.petname}"/></td>
+                        <td><c:out value="${info.petbreed}"/></td>
+                        <td><c:out value="${info.petsex}"/></td>
+                        <td><c:out value="${info.petage}"/></td>
+                        <td><c:out value="${info.petweight}"/></td>
 
                         <td>
                             <div class="layui-inline">
 
-                                <a href="toupdataDrugInfo?gid=${info.gid}"
+                                <a href="toUpdataPetInfo?petid=${info.petid}"
                                    class="layui-btn layui-btn-small layui-btn-normal go-btn"><i
                                         class="layui-icon">&#xe642;</i></a>
-                                <a href="delDrug?gid=${info.gid}"
+                                <a href="deltePet?petid=${info.petid}&petuserid=${info.userid}"
                                    class="layui-btn layui-btn-small layui-btn-normal del-btn"><i
                                         class="layui-icon">&#xe640;</i></a>
 
@@ -92,11 +95,11 @@
             </table>
             <div class="page-wrap">
                 <ul class="pagination">
-                    <li><a href="findAllDrug">首页</a></li>
-                    <li><a href="findAllDrug?pageNum=${pageInfo.prePage}&usertype=${nowusertype}">«</a></li>
+                    <li><a href="findAllPet?petuserid=${loginUser.userid}">首页</a></li>
+                    <li><a href="findAllPet?pageNum=${pageInfo.prePage}&petuserid=${loginUser.userid}">«</a></li>
                     <li class="active"><span>${pageInfo.pageNum}</span></li>
-                    <li><a href="findAllDrug?pageNum=${pageInfo.nextPage}&usertype=${nowusertype}">»</a></li>
-                    <li><a href="findAllDrug?pageNum=${pageInfo.pages}&usertype=${nowusertype}">尾页</a></li>
+                    <li><a href="findAllPet?pageNum=${pageInfo.nextPage}&petuserid=${loginUser.userid}">»</a></li>
+                    <li><a href="findAllPet?pageNum=${pageInfo.pages}&petuserid=${loginUser.userid}">尾页</a></li>
                 </ul>
                 <ul>
                     <li><a>共${pageInfo.pages}页</a></li>

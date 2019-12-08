@@ -36,26 +36,26 @@ To change this template use File | Settings | File Templates.
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe608;</i>宠物管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="toaddPet.action?user.userId=${user.userId}" target="iframe"><span
+                    <dd><a href="toaddPet?userid=${loginUser.userid}" target="iframe"><span
                             class="l-line"></span>添加我的宠物</a></dd>
-                    <dd><a href="petList.action?pet.userId=${user.userId}&pageUtil.pageNo=1" target="iframe"><span
+                    <dd><a href="findAllPet?petuserid=${loginUser.userid}" target="iframe"><span
                             class="l-line"></span>查看我的宠物</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe608;</i>就诊管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="todescriptForm.action?pet.userId=${user.userId}" target="iframe"><span
+                    <dd><a href="todescript?userid=${loginUser.userid}" target="iframe"><span
                             class="l-line"></span>挂号</a></dd>
-                    <dd><a href="todescripted.action?description.userId=${user.userId}&pageUtil.pageNo=1"
+                    <dd><a href="descripted?userid=${loginUser.userid}"
                            target="iframe"><span
                             class="l-line"></span>已挂号</a></dd>
-                    <dd><a href="totreatdForm.action?description.userId=${user.userId}" target="iframe"><span
-                            class="l-line"></span>查看诊断</a></dd>
+                    <dd><a href="totreatdForm.action?description.userId=" target="iframe"><span
+                            class="l-line"></span>诊断完成</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="userinfo.action?userInfo.userId=${user.userId}&userInfo.userName=${user.userName}"
+                <a href="userInfo?userid=${loginUser.userid}"
                    target="iframe"><i
                         class="iconfont">&#xe606;</i>个人信息</a>
             </li>
@@ -75,7 +75,7 @@ To change this template use File | Settings | File Templates.
                 <li class="layui-nav-item"><a href="javascript:;" data-url="email.html" data-id='4' data-text="邮件系统"><i
                         class="iconfont">&#xe603;</i></a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">${user.userName}</a>
+                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">${loginUser.username}</a>
                 </li>
                 <li class="layui-nav-item"><a href="logout.action">退出</a></li>
             </ul>
@@ -91,7 +91,7 @@ To change this template use File | Settings | File Templates.
                     <div class="layui-tab-item layui-show" style="background: #f5f5f5;">
                         <!--1-->
 
-                        <iframe src="userinfo.action?userInfo.userId=${user.userId}&userInfo.userName=${user.userName}"
+                        <iframe src="userInfo?userid=${loginUser.userid}"
                                 width="100%"
                                 height="100%" name="iframe" scrolling="auto" class="iframe" framborder="0"></iframe>
                         <!--1end-->

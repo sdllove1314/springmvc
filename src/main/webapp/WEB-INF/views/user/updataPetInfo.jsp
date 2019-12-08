@@ -1,6 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%@ page import="com.sdl.entity.UserInfo" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <%
@@ -29,56 +27,74 @@
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
             <form class="layui-form"
-                  action="updatePet.action?pet.petId=${pet.petId}&pet.userId=${pet.userId}&pageUtil.pageNo=1"
+                  action="updataPetInfo"
                   method="post"
+                  enctype="multipart/form-data"
                   style="width: 90%;padding-top: 20px;">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">宠物ID：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="petid" required lay-verify="required" placeholder="请输入宠物姓名"
+                               autocomplete="off" class="layui-input " value="${APet.petid}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">宠物图片：</label>
+                    <div class="layui-input-block">
+                        <input type="file" name="petimage" onchange="showPreview(this) " accept="image/png,image/jpeg">
+                    </div>
+                    <div>
+                        <img id="portrait" src="${APet.petimage}" style="height: 100px;width: 100px" />
+                    </div>
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">宠物姓名：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="pet.petName" required lay-verify="required" placeholder="请输入宠物姓名"
-                               autocomplete="off" class="layui-input " value="${pet.petName}">
+                        <input type="text" name="petname" required lay-verify="required" placeholder="请输入宠物姓名"
+                               autocomplete="off" class="layui-input " value="${APet.petname}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">宠物种类：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="pet.petBreed" required lay-verify="required" placeholder="请输入宠物种类"
-                               autocomplete="off" class="layui-input " value=${pet.petBreed}>
+                        <input type="text" name="petbreed" required lay-verify="required" placeholder="请输入宠物种类"
+                               autocomplete="off" class="layui-input " value=${APet.petbreed}>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">宠物性别：</label>
-                    <c:if test="${pet.petSex=='母'}">
+                    <c:if test="${APet.petsex=='母'}">
                         <div class="layui-input-block">
-                            <input type="radio" name="pet.petSex" value="男" title="男">
-                            <input type="radio" name="pet.petSex" value="母" title="母" checked="">
+                            <input type="radio" name="petsex" value="男" title="男">
+                            <input type="radio" name="petsex" value="母" title="母" checked="">
                         </div>
                     </c:if>
-                    <c:if test="${pet.petSex=='公'}">
+                    <c:if test="${APet.petsex=='公'}">
                         <div class="layui-input-block">
-                            <input type="radio" name="pet.petSex" value="公" title="公" checked="">
-                            <input type="radio" name="pet.petSex" value="母" title="母">
+                            <input type="radio" name="petsex" value="公" title="公" checked="">
+                            <input type="radio" name="petsex" value="母" title="母">
                         </div>
                     </c:if>
-                    <c:if test="${pet.petSex==''}">
+                    <c:if test="${APet.petsex==''}">
                         <div class="layui-input-block">
-                            <input type="radio" name="pet.petSex" value="公" title="公" checked="">
-                            <input type="radio" name="pet.petSex" value="母" title="母">
+                            <input type="radio" name="petsex" value="公" title="公" checked="">
+                            <input type="radio" name="petsex" value="母" title="母">
                         </div>
                     </c:if>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">宠物年龄：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="pet.petAge" required lay-verify="required" placeholder="请输入宠物年龄"
-                               autocomplete="off" class="layui-input " value=${pet.petAge}>
+                        <input type="text" name="petage" required lay-verify="required" placeholder="请输入宠物年龄"
+                               autocomplete="off" class="layui-input " value=${APet.petage}>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">宠物体重：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="pet.petWeight" required lay-verify="required"
-                               placeholder="请输入体重" autocomplete="off" class="layui-input" value=${pet.petWeight}>
+                        <input type="text" name="petweight" required lay-verify="required"
+                               placeholder="请输入体重" autocomplete="off" class="layui-input" value=${APet.petweight}>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -100,6 +116,21 @@
         //监听信息提交
 
     });
+</script>
+<script type="text/javascript">
+    function showPreview(source) {
+        var file = source.files[0];
+        if(window.FileReader) {
+            var fr = new FileReader();
+            console.log(fr);
+            var portrait = document.getElementById('portrait');
+            fr.onloadend = function(e) {
+                portrait.src = e.target.result;
+            };
+            fr.readAsDataURL(file);
+            portrait.style.display = 'block';
+        }
+    }
 </script>
 </body>
 </html>
