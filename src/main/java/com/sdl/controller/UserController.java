@@ -125,10 +125,11 @@ public class UserController {
     @RequestMapping("/resoved")
     public String resoved(int userid,@RequestParam(value = "pageNum",
             defaultValue = "1",required = false) int pagegNum, Model model){
+        System.out.println("usrid========.>>>>"+userid);
         List<Description>  descriptionList = userService.findDescresoved(userid,1);
         PageHelper.startPage(pagegNum,6);
         PageInfo<Description> pageInfo = new PageInfo<Description>(descriptionList);
         model.addAttribute("pageInfo",pageInfo);
-        return "/user/resoved";
+        return "/user/resovedList";
     }
 }

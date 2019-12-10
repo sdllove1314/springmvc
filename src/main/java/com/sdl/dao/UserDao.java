@@ -3,6 +3,7 @@ package com.sdl.dao;
 
 import com.sdl.model.Description;
 import com.sdl.model.Pet;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -76,5 +77,5 @@ public interface UserDao {
      * @param resoved
      * @return
      */
-    public List<Description> findDescresoved(int userid,int resoved);
+    public List<Description> findDescresoved(@Param("userid") int userid,@Param("resoved") int resoved);
 }

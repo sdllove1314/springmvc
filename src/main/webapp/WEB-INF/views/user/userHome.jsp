@@ -50,7 +50,7 @@ To change this template use File | Settings | File Templates.
                     <dd><a href="descripted?userid=${loginUser.userid}"
                            target="iframe"><span
                             class="l-line"></span>已挂号</a></dd>
-                    <dd><a href="totreatdForm.action?description.userId=" target="iframe"><span
+                    <dd><a href="resoved?userid=${loginUser.userid}" target="iframe"><span
                             class="l-line"></span>诊断完成</a></dd>
                 </dl>
             </li>
